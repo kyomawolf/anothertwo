@@ -1,0 +1,14 @@
+//
+// Created by kyomawolf on 11.02.24.
+//
+
+#ifndef ANOTHERTWO_TILEIMPLEMENTATION_H
+#define ANOTHERTWO_TILEIMPLEMENTATION_H
+
+
+class Tile {
+
+};
+
+
+#endif //ANOTHERTWO_TILEIMPLEMENTATION_H
