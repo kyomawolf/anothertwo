@@ -2,6 +2,7 @@
 // Created by kyomawolf on 10.02.24.
 //
 
+#include <raylib-cpp.hpp>
 #include <iostream>
 #include <exception>
 #include "Game.h"
@@ -9,19 +10,19 @@
 
 int main() {
 	try{
-		Game::init();
+		auto instance = Game::init();
 	
-		Game::loadRessources();
+		instance.loadRessources();
 	
-		Game::mainLoop();
+		instance.mainLoop();
 
-		Game::unloadRessources();
+		instance.unloadRessources();
 
-		Game::close();
+		instance.close();
 
 	} catch( Game::Exception &e ) {
-		if (e.location > GAME::Exception::Location::LoadRessouces)
-			Game::unloadRessources();
+		if (e.location > Game::Exception::Location::lLoadRessources) {}
+			// Game::unloadRessources();
 		std::cout << e.what() << std::endl;
 		return EXIT_FAILURE;
 
