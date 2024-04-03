@@ -3,14 +3,14 @@ sources = ['main.cpp', 'Game.cpp', 'LibLoader.cpp']
 
 include_dirs = include_directories('./interface', './include')
 
-#'-fno-omit-frame-pointer' '-fsanitize=address'
+#'-fno-omit-frame-pointer' 
 
 raylib_dep = [dependency('raylib')]
 #debug_deps =  dependency('')
-build_flags = ['-g']
-linking_flags = []
+build_flags = ['-g', '-fsanitize=address']
+linking_flags = ['-fsanitize=address']
 
-subdir('modules')
+# subdir('modules')
 
 executable('raylibtest.app',
            sources: sources,

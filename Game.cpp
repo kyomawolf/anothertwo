@@ -57,45 +57,45 @@ size_t getFileAmount(std::filesystem::path& libPath) {
 //todo implement fail, when some loading goes wrong
 void Game::loadRessources()
 {
-	using namespace std::chrono_literals;
-	std::cout << "load ressources" << std::endl;
-	raylib::Rectangle rec;
-	rec.SetHeight(10);
-	rec.SetWidth(10);
+	// using namespace std::chrono_literals;
+	// std::cout << "load ressources" << std::endl;
+	// raylib::Rectangle rec;
+	// rec.SetHeight(10);
+	// rec.SetWidth(10);
 
-	auto libPath = filesystemCheck();
-    ressourceAmount = getFileAmount(libPath);
-	bool once = false;
+	// auto libPath = filesystemCheck();
+    // ressourceAmount = getFileAmount(libPath);
+	// bool once = false;
 
-	// auto loadingThread = std::thread(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath);
-	std::packaged_task<void()> loadingThread(std::bind(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath));
-	auto promised = loadingThread.get_future();
+	// // auto loadingThread = std::thread(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath);
+	// std::packaged_task<void()> loadingThread(std::bind(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath));
+	// auto promised = loadingThread.get_future();
 
-	loadingThread();
-	while ((ressourceAmount != loaded) && !window.ShouldClose() && !(promised.wait_for(0ms) == std::future_status::ready)) {
-		if (once == false) {
-			std::cout << "entered loop" << std::endl;
-			once = true;
-		}
-		window.BeginDrawing();
-		window.ClearBackground(raylib::Color::RayWhite());
-		for (int i = 0; i < loaded; i++) {
-			// use textures instead
-			DrawRectangle(100 + (i * 100), 200, rec.width, rec.height, raylib::Color::Red());
-		}
-		window.EndDrawing();
+	// loadingThread();
+	// while ((ressourceAmount != loaded) && !window.ShouldClose() && !(promised.wait_for(0ms) == std::future_status::ready)) {
+	// 	if (once == false) {
+	// 		std::cout << "entered loop" << std::endl;
+	// 		once = true;
+	// 	}
+	// 	window.BeginDrawing();
+	// 	window.ClearBackground(raylib::Color::RayWhite());
+	// 	for (int i = 0; i < loaded; i++) {
+	// 		// use textures instead
+	// 		DrawRectangle(100 + (i * 100), 200, rec.width, rec.height, raylib::Color::Red());
+	// 	}
+	// 	window.EndDrawing();
 
-	}
-	std::cout << "exited loop" << std::endl;
-	window.BeginDrawing();
-		window.ClearBackground(raylib::Color::RayWhite());
-		for (int i = 0; i < loaded; i++) {
-			// use textures instead
-			DrawRectangle(100 + (i * 100), 200, rec.width, rec.height, raylib::Color::Red());
-		}
-		window.EndDrawing();
-	// loadingThread.join();
-	exit(EXIT_SUCCESS);
+	// }
+	// std::cout << "exited loop" << std::endl;
+	// window.BeginDrawing();
+	// 	window.ClearBackground(raylib::Color::RayWhite());
+	// 	for (int i = 0; i < loaded; i++) {
+	// 		// use textures instead
+	// 		DrawRectangle(100 + (i * 100), 200, rec.width, rec.height, raylib::Color::Red());
+	// 	}
+	// 	window.EndDrawing();
+	// // loadingThread.join();
+	// exit(EXIT_SUCCESS);
 }
 
 void Game::mainLoop()
