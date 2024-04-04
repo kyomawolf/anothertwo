@@ -7,7 +7,7 @@ void test::soundLoop() { }
 void test::uiLoad() { }
 
 extern "C" {
-IDynamic* Initialize() {
+IDynamic* InitializeTest() {
     return new test();
 }
 }

@@ -17,8 +17,8 @@ public:
 
 private:
     // set flags according to the wanted function calls
-    LoopOptions functionOptionCalls;
+    LoopOptions functionOptionCalls{LONone};
 };
 
-extern "C" {
-IDynamic* Initialize();}
+// extern "C" {
+// IDynamic* Initialize();}

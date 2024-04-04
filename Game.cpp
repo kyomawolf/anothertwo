@@ -68,11 +68,11 @@ void Game::loadRessources()
 	bool once = false;
 
 	// auto loadingThread = std::thread(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath);
-	std::packaged_task<void()> loadingThread(std::bind(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath));
+	std::packaged_task<int()> loadingThread(std::bind(actualLoad, std::ref(ressourceList), std::ref(finishedLoading), ressourceAmount, std::ref(loaded), libPath));
 	auto promised = loadingThread.get_future();
 
 	loadingThread();
-	while ((ressourceAmount != loaded) && !window.ShouldClose() && !(promised.wait_for(0ms) == std::future_status::ready)) {
+	while ((ressourceAmount != loaded) && !window.ShouldClose() && !(promised.wait_for(1ms) == std::future_status::ready)) {
 		if (once == false) {
 			std::cout << "entered loop" << std::endl;
 			once = true;
@@ -121,7 +121,7 @@ void Game::close()
 Game::Exception::Exception(enum Location loc) : location(loc) {}
 
 Ressource::~Ressource() {
-	if (dynamicLib != nullptr)
-		delete dynamicLib;
-	dynamicLib = nullptr;
+	// if (dynamicLib != nullptr)
+	// 	delete dynamicLib;
+	// dynamicLib = nullptr;
 }

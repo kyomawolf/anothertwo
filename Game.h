@@ -50,6 +50,6 @@ private:
 
 };
 
-void actualLoad(std::vector<Ressource>& game, bool& finshedLoading, size_t amount, int& loaded, std::filesystem::path target);
+int actualLoad(std::vector<Ressource>& game, bool& finshedLoading, size_t amount, int& loaded, std::filesystem::path target);
 
 #endif
